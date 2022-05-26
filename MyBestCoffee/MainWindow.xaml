@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyBestCoffee"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="My best coffee" Height="450" Width="800" Background="#7b5244">
+    
     <Grid>
-        
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--<Button x:Name="btn_account" Content="account" Margin="10" Click="btn_account"/>-->
+            <Frame x:Name="frame_menu" NavigationUIVisibility="Hidden"/>
+        </Grid>
+        </Grid>
 </Window>

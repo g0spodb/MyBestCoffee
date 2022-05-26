@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace MyBestCoffee
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MenuPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MenuPage : Page
     {
-        public MainWindow()
+        public MenuPage()
         {
             InitializeComponent();
-            frame_menu.NavigationService.Navigate(new MenuPage());
         }
-    }   
+    }
 }
