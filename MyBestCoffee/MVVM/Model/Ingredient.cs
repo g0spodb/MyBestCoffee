@@ -12,16 +12,16 @@ namespace MyBestCoffee.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Instruction
+    public partial class Ingredient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Instruction()
+        public Ingredient()
         {
             this.Coffee = new HashSet<Coffee>();
         }
     
         public int Id { get; set; }
-        public string Instruction1 { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coffee> Coffee { get; set; }

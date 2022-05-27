@@ -6,58 +6,45 @@
              xmlns:local="clr-namespace:MyBestCoffee.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <TextBlock Text="Choose your coffee"
-                   Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="0,0,0,20"/>
-        <StackPanel Orientation="Horizontal">
-            <Border Width="200"
-                    Height="200"
-                    CornerRadius="10" >
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#e4bcbc" Offset="0.0"/>
-                        <GradientStop Color="#e7ceb4" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <StackPanel>
-                        <Image Width="200"
-                               Height="150"
-                               Source="/images/cappuccino.jpg"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"/>
-                        <TextBlock Text="Cappucino"
-                                   Foreground="Black"
-                                   FontSize="18"
-                                   Margin="20,10,10,0"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border Width="200" Height="200" CornerRadius="10" Margin="45,0,0,0">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#e4bcbc" Offset="0.0"/>
-                        <GradientStop Color="#e7ceb4" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <StackPanel>
-                        <Image Width="400"
-                               Height="150"
-                               Source="/images/mocha.jpg"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"/>
-                        <TextBlock Text="MochaCooler"
-                                   Foreground="Black"
-                                   FontSize="18"
-                                   Margin="20,10,10,0"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" Name="LViewRecipes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="200" Height="250">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Width="200" Height="200" VerticalAlignment="Top" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="2">
+                            <Image.Source>
+                                <Binding Path="img">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>Images\mocha.jpg</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Top" TextAlignment="Center" Width="200" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="15" Grid.Row="1"></TextBlock>
+                        <TextBlock Text="{Binding Complexity.Title}" VerticalAlignment="Top" TextAlignment="Left" Width="100" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="0,35,0,0" FontSize="8" Grid.Row="1"></TextBlock>
+                        <!--<TextBlock Text="sdfsdf" VerticalAlignment="Top" TextAlignment="Center" Width="390" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="25" Grid.Row="1" Margin="0,122,0,0"></TextBlock>-->
+                        <!--<Image Width="400" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5">-->
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-    </StackPanel>
+
+
+        </ListView>
+
+    </Grid>
 </UserControl>

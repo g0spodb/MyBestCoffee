@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using MyBestCoffee.MVVM.Model;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace MyBestCoffee.MVVM.View
 {
@@ -10,6 +12,8 @@ namespace MyBestCoffee.MVVM.View
         public RecipesView()
         {
             InitializeComponent();
+            var currentRecipes = MyBestCoffeeEntities.GetContext().Coffee.ToList();
+            LViewRecipes.ItemsSource = currentRecipes;
         }
     }
 }

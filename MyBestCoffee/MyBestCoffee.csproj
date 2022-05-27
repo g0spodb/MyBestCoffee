@@ -78,7 +78,7 @@
     <Compile Include="MVVM\Model\Favorite.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\Instruction.cs">
+    <Compile Include="MVVM\Model\Ingredient.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Model1.Context.cs">
@@ -109,6 +109,9 @@
     <Compile Include="MVVM\View\FavoriteView.xaml.cs">
       <DependentUpon>FavoriteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\FavoriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,12 +198,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\cappuccino.jpg" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\mocha.jpg" />
+    <Resource Include="MVVM\View\images\cappuccino.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MVVM\View\images\mocha.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MVVM\Model\Model1.Context.tt">
@@ -209,6 +218,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="MVVM\View\images\cappuccino_tiramisu.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

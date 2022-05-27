@@ -21,7 +21,7 @@ namespace MyBestCoffee.MVVM.Model
         }
     
         public int Id { get; set; }
-        public string Complexity1 { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coffee> Coffee { get; set; }
