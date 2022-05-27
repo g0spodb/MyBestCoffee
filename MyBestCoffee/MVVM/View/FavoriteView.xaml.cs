@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyBestCoffee
+namespace MyBestCoffee.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для FavoriteView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FavoriteView : UserControl
     {
-        public MainWindow()
+        public FavoriteView()
         {
             InitializeComponent();
         }
-    }   
+    }
 }
