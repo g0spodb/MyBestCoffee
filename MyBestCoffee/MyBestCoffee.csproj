@@ -218,6 +218,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="MVVM\View\images\latte.jpg" />
     <Resource Include="MVVM\View\images\cappuccino_tiramisu.jpg" />
   </ItemGroup>
   <ItemGroup>
