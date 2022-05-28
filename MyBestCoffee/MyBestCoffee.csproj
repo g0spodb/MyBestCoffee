@@ -67,43 +67,40 @@
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="MVVM\Model\Class.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Coffee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Complexity.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\Model\Favorite.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="MVVM\Model\DBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\DBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\DBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Ingredient.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\Model\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\Model\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\Model\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Recipe.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\ViewModel\FavoriteViewModel.cs" />
     <Compile Include="MVVM\View\FavoriteView.xaml.cs">
@@ -182,12 +179,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="MVVM\Model\Model1.edmx">
+    <EntityDeploy Include="MVVM\Model\DBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MVVM\Model\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="MVVM\Model\DBModel.edmx.diagram">
+      <DependentUpon>DBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -208,21 +205,23 @@
     <Resource Include="MVVM\View\images\mocha.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MVVM\Model\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="MVVM\Model\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Resource Include="MVVM\View\images\latte.jpg" />
     <Resource Include="MVVM\View\images\cappuccino_tiramisu.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MVVM\Model\DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MVVM\Model\DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

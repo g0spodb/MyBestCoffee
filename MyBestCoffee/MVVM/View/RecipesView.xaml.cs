@@ -12,7 +12,7 @@ namespace MyBestCoffee.MVVM.View
         public RecipesView()
         {
             InitializeComponent();
-            var currentRecipes = MyBestCoffeeEntities.GetContext().Coffee.ToList();
+            var currentRecipes = MyBestCoffeeEntities1.GetContext().Coffee.ToList();
             LViewRecipes.ItemsSource = currentRecipes;
         }
     }

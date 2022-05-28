@@ -18,6 +18,5 @@ namespace MyBestCoffee.MVVM.Model
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public string Favorite { get; set; }
     }
 }

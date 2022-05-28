@@ -25,14 +25,8 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Width="200" Height="200" VerticalAlignment="Top" Stretch="UniformToFill" HorizontalAlignment="left" Grid.RowSpan="2">
-                            <Image.Source>
-                                <Binding Path="img">
-                                    <Binding.TargetNullValue>
-                                        <ImageSource>Images\mocha.jpg</ImageSource>
-                                    </Binding.TargetNullValue>
-                                </Binding>
-                            </Image.Source>
+                        <Image Source="{Binding img}" Width="200" Height="200" VerticalAlignment="Top" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="2">
+                            
                         </Image>
                         <TextBlock Text="{Binding Name}" VerticalAlignment="Top" TextAlignment="Center" Width="200" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" Grid.Row="1"></TextBlock>
                         <TextBlock Text="{Binding Complexity.Title}" VerticalAlignment="Top" TextAlignment="Left" Width="100" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="0,35,0,0" FontSize="8" Grid.Row="1"></TextBlock>
