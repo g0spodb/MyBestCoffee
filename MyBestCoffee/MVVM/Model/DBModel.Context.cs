@@ -13,18 +13,18 @@ namespace MyBestCoffee.MVVM.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyBestCoffeeEntities1 : DbContext
+    public partial class MyBestCoffeeEntities : DbContext
     {
-        private static MyBestCoffeeEntities1 _context;
-        public MyBestCoffeeEntities1()
-            : base("name=MyBestCoffeeEntities1")
+        private static MyBestCoffeeEntities _context;
+        public MyBestCoffeeEntities()
+            : base("name=MyBestCoffeeEntities")
         {
         }
 
-        public static MyBestCoffeeEntities1 GetContext()
+        public static MyBestCoffeeEntities GetContext()
         {
             if (_context == null)
-                _context = new MyBestCoffeeEntities1();
+                _context = new MyBestCoffeeEntities();
 
             return _context;
         }
@@ -37,6 +37,7 @@ namespace MyBestCoffee.MVVM.Model
         public virtual DbSet<Class> Class { get; set; }
         public virtual DbSet<Coffee> Coffee { get; set; }
         public virtual DbSet<Complexity> Complexity { get; set; }
+        public virtual DbSet<Favorite> Favorite { get; set; }
         public virtual DbSet<Ingredient> Ingredient { get; set; }
         public virtual DbSet<Recipe> Recipe { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

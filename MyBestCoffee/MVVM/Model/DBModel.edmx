@@ -20,16 +20,24 @@
           <Property Name="Name" Type="varchar" MaxLength="25" />
           <Property Name="Id_Class" Type="int" />
           <Property Name="Id_Recipe" Type="int" />
-          <Property Name="Id_Ingredient" Type="int" />
+          <Property Name="Id_Instruction" Type="int" />
           <Property Name="Id_Complexity" Type="int" />
-          <Property Name="img" Type="varchar(max)" />
+          <Property Name="img" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Complexity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+          <Property Name="Id_Coffee" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
@@ -55,16 +63,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "MyBestCoffee.dbo.User" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="25" />
-          <Property Name="Login" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Login" Type="varchar" MaxLength="25" />
+          <Property Name="Password" Type="varchar" MaxLength="25" />
+          <Property Name="Favorite" Type="nchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Coffee_Class">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
@@ -90,7 +97,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Coffee_Ingredient">
+        <Association Name="FK_Coffee_Instruction">
           <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
           <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -98,7 +105,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Coffee">
-              <PropertyRef Name="Id_Ingredient" />
+              <PropertyRef Name="Id_Instruction" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -118,17 +125,11 @@
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coffee" EntityType="Self.Coffee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complexity" EntityType="Self.Complexity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [User].[Id] AS [Id], 
-    [User].[Name] AS [Name], 
-    [User].[Login] AS [Login], 
-    [User].[Password] AS [Password]
-    FROM [dbo].[User] AS [User]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Coffee_Class" Association="Self.FK_Coffee_Class">
             <End Role="Class" EntitySet="Class" />
             <End Role="Coffee" EntitySet="Coffee" />
@@ -137,7 +138,7 @@
             <End Role="Complexity" EntitySet="Complexity" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Coffee_Ingredient" Association="Self.FK_Coffee_Ingredient">
+          <AssociationSet Name="FK_Coffee_Instruction" Association="Self.FK_Coffee_Instruction">
             <End Role="Ingredient" EntitySet="Ingredient" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
@@ -167,12 +168,12 @@
           <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Id_Class" Type="Int32" />
           <Property Name="Id_Recipe" Type="Int32" />
-          <Property Name="Id_Ingredient" Type="Int32" />
+          <Property Name="Id_Instruction" Type="Int32" />
           <Property Name="Id_Complexity" Type="Int32" />
-          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Class" Relationship="Self.FK_Coffee_Class" FromRole="Coffee" ToRole="Class" />
           <NavigationProperty Name="Complexity" Relationship="Self.FK_Coffee_Complexity" FromRole="Coffee" ToRole="Complexity" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Coffee_Ingredient" FromRole="Coffee" ToRole="Ingredient" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Coffee_Instruction" FromRole="Coffee" ToRole="Ingredient" />
           <NavigationProperty Name="Recipe" Relationship="Self.FK_Coffee_Recipe" FromRole="Coffee" ToRole="Recipe" />
         </EntityType>
         <EntityType Name="Complexity">
@@ -180,8 +181,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Coffee" Relationship="Self.FK_Coffee_Complexity" FromRole="Complexity" ToRole="Coffee" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <Property Name="Id_Coffee" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
@@ -189,7 +198,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Coffee" Relationship="Self.FK_Coffee_Ingredient" FromRole="Ingredient" ToRole="Coffee" />
+          <NavigationProperty Name="Coffee" Relationship="Self.FK_Coffee_Instruction" FromRole="Ingredient" ToRole="Coffee" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -213,10 +222,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Favorite" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Coffee_Class">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
@@ -242,7 +252,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Coffee_Ingredient">
+        <Association Name="FK_Coffee_Instruction">
           <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="0..1" />
           <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -250,7 +260,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Coffee">
-              <PropertyRef Name="Id_Ingredient" />
+              <PropertyRef Name="Id_Instruction" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -266,10 +276,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MyBestCoffeeEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyBestCoffeeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Class" EntityType="Self.Class" />
           <EntitySet Name="Coffee" EntityType="Self.Coffee" />
           <EntitySet Name="Complexity" EntityType="Self.Complexity" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" />
           <EntitySet Name="Ingredient" EntityType="Self.Ingredient" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -282,7 +293,7 @@
             <End Role="Complexity" EntitySet="Complexity" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Coffee_Ingredient" Association="Self.FK_Coffee_Ingredient">
+          <AssociationSet Name="FK_Coffee_Instruction" Association="Self.FK_Coffee_Instruction">
             <End Role="Ingredient" EntitySet="Ingredient" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
@@ -296,7 +307,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище MyBestCoffeeModelContainer" CdmEntityContainer="MyBestCoffeeEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MyBestCoffeeModelContainer" CdmEntityContainer="MyBestCoffeeEntities">
           <EntitySetMapping Name="Class">
             <EntityTypeMapping TypeName="MyBestCoffeeModel.Class">
               <MappingFragment StoreEntitySet="Class">
@@ -312,7 +323,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id_Class" ColumnName="Id_Class" />
                 <ScalarProperty Name="Id_Recipe" ColumnName="Id_Recipe" />
-                <ScalarProperty Name="Id_Ingredient" ColumnName="Id_Ingredient" />
+                <ScalarProperty Name="Id_Instruction" ColumnName="Id_Instruction" />
                 <ScalarProperty Name="Id_Complexity" ColumnName="Id_Complexity" />
                 <ScalarProperty Name="img" ColumnName="img" />
               </MappingFragment>
@@ -323,6 +334,15 @@
               <MappingFragment StoreEntitySet="Complexity">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favorite">
+            <EntityTypeMapping TypeName="MyBestCoffeeModel.Favorite">
+              <MappingFragment StoreEntitySet="Favorite">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id_Coffee" ColumnName="Id_Coffee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -360,6 +380,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Favorite" ColumnName="Favorite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

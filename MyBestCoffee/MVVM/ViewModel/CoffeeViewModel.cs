@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyBestCoffee.MVVM.ViewModel
 {
-    class FavoriteViewModel : ObservableObject
+    class CoffeeViewModel : ObservableObject
     {
     }
 }

@@ -4,14 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyBestCoffee.MVVM.View"
+             xmlns:viewModel="clr-namespace:MyBestCoffee.MVVM.ViewModel"
+             xmlns:view="clr-namespace:MyBestCoffee.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:MainViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView  Grid.Row="1" Name="LViewRecipes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="1,1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        
+        <ListView  Grid.Row="1" Name="LViewRecipes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" RenderTransformOrigin="1,1" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="LViewRecipes_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"></WrapPanel>
@@ -25,20 +31,18 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding img}" Width="200" Height="200" VerticalAlignment="Top" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="2">
-                            
-                        </Image>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Top" TextAlignment="Center" Width="200" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" Grid.Row="1"></TextBlock>
-                        <TextBlock Text="{Binding Complexity.Title}" VerticalAlignment="Top" TextAlignment="Left" Width="100" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="0,35,0,0" FontSize="8" Grid.Row="1"></TextBlock>
-                        <!--<TextBlock Text="sdfsdf" VerticalAlignment="Top" TextAlignment="Center" Width="390" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="25" Grid.Row="1" Margin="0,122,0,0"></TextBlock>-->
-                        <!--<Image Width="400" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="5">-->
+                        <Image Source="{Binding img}" Width="200" Height="200" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                        <TextBlock Text="{Binding Name}" Margin="0 15 0 0" VerticalAlignment="Top" TextAlignment="Center" Width="200" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" Grid.Row="1"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
-
-
         </ListView>
+        <RadioButton Content="Favorite"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CoffeeViewCommand}"/>
 
     </Grid>
 </UserControl>

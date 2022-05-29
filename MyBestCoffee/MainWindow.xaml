@@ -52,16 +52,18 @@
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CoffeeViewCommand}"/>
 
             </StackPanel>
-            <TextBox Width="250"
+            <TextBox x:Name="TBoxSearch"
+                Width="250"
                  Height="40"
                  VerticalContentAlignment="Center" 
                  HorizontalAlignment="Left"
                  Margin="5"
                  Grid.Column="1"
-                     Style="{StaticResource ModernTextBox}"/>
+                     Style="{StaticResource ModernTextBox}" TextChanged="TBoxSearch_TextChanged"/>
             <ContentControl Grid.Row="1" Grid.Column="1"
                         Margin="10"
                             Content="{Binding CurrentView}"/>

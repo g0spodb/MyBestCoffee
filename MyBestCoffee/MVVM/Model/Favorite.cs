@@ -12,19 +12,10 @@ namespace MyBestCoffee.MVVM.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Coffee
+    public partial class Favorite
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Id_Class { get; set; }
-        public Nullable<int> Id_Recipe { get; set; }
-        public Nullable<int> Id_Instruction { get; set; }
-        public Nullable<int> Id_Complexity { get; set; }
-        public string img { get; set; }
-    
-        public virtual Class Class { get; set; }
-        public virtual Complexity Complexity { get; set; }
-        public virtual Ingredient Ingredient { get; set; }
-        public virtual Recipe Recipe { get; set; }
+        public int Id_User { get; set; }
+        public int Id_Coffee { get; set; }
     }
 }

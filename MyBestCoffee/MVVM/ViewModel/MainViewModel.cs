@@ -13,11 +13,15 @@ namespace MyBestCoffee.MVVM.ViewModel
 
         public RelayCommand FavoriteViewCommand { get; set; }
 
+        public RelayCommand CoffeeViewCommand { get; set; }
+
 
 
         public RecipesViewModel RecipesVM { get; set; }
 
         public FavoriteViewModel FavoriteVM { get; set; }
+
+        public CoffeeViewModel CoffeeVM { get; set; }
 
         private object _currentView;
 
@@ -34,7 +38,10 @@ namespace MyBestCoffee.MVVM.ViewModel
         public MainViewModel()
         {
             RecipesVM = new RecipesViewModel();
+
             FavoriteVM = new FavoriteViewModel();
+
+            CoffeeVM = new CoffeeViewModel();
             CurrentView = RecipesVM;
             RecipesViewCommand = new RelayCommand(o =>
             {
@@ -44,6 +51,10 @@ namespace MyBestCoffee.MVVM.ViewModel
             {
                 CurrentView = FavoriteVM;
             });
+            CoffeeViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = CoffeeVM;
+            }); 
         }
     }
 }
