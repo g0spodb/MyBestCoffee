@@ -26,10 +26,8 @@ namespace MyBestCoffee.MVVM.View
         {
             if (LViewRecipes.SelectedItem != null)
             {
-                var n = ((sender as ListView).SelectedItem as Coffee);
-                //Command = "{Binding RecipesViewCommand}"
-                bool v = NavigationService.Navigate(new CoffeeView(n));
-                //CoffeeViewCommand = new RelayCommand(RelayCommand);
+                Coffee n = ((sender as ListView).SelectedItem as Coffee);
+                NavigationService.Navigate(new CoffeePage(n));
             }
             else MessageBox.Show("Выберите блюдо");
         }
